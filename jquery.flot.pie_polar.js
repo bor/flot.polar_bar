@@ -33,16 +33,19 @@
         function processData(slices) {
 
             // calculate maximum radius
-			var maxRadius =  Math.min(plot.getPlaceholder().width(), plot.getPlaceholder().height() / options.series.pie.tilt) / 2;
+            var maxRadius =  Math.min(plot.getPlaceholder().width(), plot.getPlaceholder().height() / options.series.pie.tilt) / 2;
             // TODO : get maxRadius from pie plugin to avoid issue with labels
             if (options.series.pie.label.show) maxRadius *= 0.75;    // dirty fix
 
-            for (var i = 0; i < slices.length; ++i) {
+            var i;
 
-                // calculate maximum value
+            // calculate maximum value
+            for (i = 0; i < slices.length; i++) {
                 maxValue = Math.max(maxValue, slices[i].data[0][1]);
+            }
 
-                // convert(invert) angle & radius
+            // convert(invert) angle & radius
+            for (i = 0; i < slices.length; i++) {
                 slices[i].angle = Math.PI * 2 / slices.length;
                 slices[i].radius = slices[i].data[0][1]/maxValue * maxRadius;
             }
@@ -52,7 +55,7 @@
 
     }
 
-	// define specific options and their default values
+    // define specific options and their default values
     var options = {
         series: {
             pie: {
