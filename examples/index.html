@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Polar Bar Charts</title>
+	<link href="http://www.flotcharts.org/flot/examples/examples.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+
+	.demo-container {
+		position: relative;
+		height: 400px;
+	}
+
+	#placeholder {
+		height: 400px;
+        width: 500px;
+	}
+
+	#menu {
+		position: absolute;
+		top: 20px;
+		left: 625px;
+		bottom: 20px;
+		right: 20px;
+		width: 200px;
+	}
+
+	#menu button {
+		display: inline-block;
+		width: 200px;
+		padding: 3px 0 2px 0;
+		margin-bottom: 4px;
+		background: #eee;
+		border: 1px solid #999;
+		border-radius: 2px;
+		font-size: 16px;
+		box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+		cursor: pointer;
+	}
+
+	#description {
+		margin: 15px 10px 20px 10px;
+	}
+
+	ul {
+		font-size: 10pt;
+	}
+
+	ul li {
+		margin-bottom: 0.5em;
+	}
+
+	ul.options li {
+		list-style: none;
+		margin-bottom: 1em;
+	}
+
+	ul li i {
+		color: #999;
+	}
+
+	</style>
+	<!--[if lte IE 8]><script type="text/javascript" src="http://www.flotcharts.org/flot/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="../jquery.flot.pie_polar.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		// Randomly Generated Data
+
+		var data = [],
+			series = Math.floor(Math.random() * 7) + 3;
+
+		for (var i = 0; i < series; i++) {
+			data[i] = {
+				label: "Series" + (i + 1),
+				data: Math.floor(Math.random() * 100) + 1
+			}
+		}
+
+		var $placeholder = $('#placeholder');
+
+		$("#example-1").click(function() {
+
+			$placeholder.unbind();
+
+			$('#title').text('Default Options');
+			$('#description').text('Polar Bar Chart with no options set.');
+
+			$.plot($placeholder, data, {
+				series: {
+					pie: {
+                        show: true,
+                        polar: true
+					}
+				}
+			});
+
+		});
+
+		$("#example-2").click(function() {
+
+			$placeholder.unbind();
+
+			$('#title').text('With Labels');
+			$('#description').text('Polar Bar Chart with labels.');
+
+			$.plot($placeholder, data, {
+				series: {
+					pie: {
+                        show: true,
+                        polar: true,
+                        label: { show: true }
+					}
+                },
+                legend: {
+					show: false
+                }
+			});
+
+		});
+
+		$("#example-3").click(function() {
+
+			$placeholder.unbind();
+
+			$('#title').text('Without Labels/Legend');
+			$('#description').text('Polar Bar Chart without labels/legend.');
+
+			$.plot($placeholder, data, {
+				series: {
+					pie: {
+                        show: true,
+                        polar: true,
+                        label: { show: false }
+					}
+				},
+                legend: {
+					show: false
+                }
+			});
+
+		});
+
+		$('#example-8').click(function() {
+
+			$placeholder.unbind();
+
+			$('#title').text('Interactivity');
+			$('#description').text('The chart can be made interactive with hover and click events.');
+
+			$.plot($placeholder, data, {
+				series: {
+					pie: { 
+						show: true,
+                        polar: true
+					}
+				},
+				grid: {
+					hoverable: true,
+					clickable: true
+				}
+			});
+        });
+
+
+		$('#example-9').click(function() {
+
+			$placeholder.unbind();
+
+			$('#title').text('Default Pie Chart');
+			$('#description').text('The default pie chart with no options set.');
+
+			$.plot($placeholder, data, {
+				series: {
+					pie: {
+						show: true
+					}
+				}
+			});
+
+		});
+
+
+		$('#example-1').click();
+
+        var plugins_arr = jQuery.map( $.plot.plugins, function(el, i) {
+            return el.name + ' ' + el.version;
+        });
+        var plugins_str = plugins_arr.join(', ');
+		$('#footer').prepend('jQuery ' + $.fn.jquery + ', flot ' + $.plot.version + ', ' + plugins_str);
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Polar Bar Charts</h2>
+		<h5>(AKA Polar Area Diagrams / Radial Bar Charts)</h5>
+	</div>
+
+	<div id="content">
+
+		<h3 id="title"></h3>
+		<div class="demo-container">
+            <div id="placeholder"></div>
+			<div id="menu">
+				<button id="example-1">Default options</button>
+				<button id="example-2">With labels</button>
+				<button id="example-3">Without labels/legend</button>
+				<button id="example-8">Interactivity</button>
+				<button id="example-9">Pie Chart (for comparison)</button>
+			</div>
+		</div>
+
+		<p id="description"></p>
+
+		<h4>Options</h4>
+        The only one option for now. All other options are same as for pie plugin.
+		<ul class="options">
+			<li style="border-bottom: 1px dotted #ccc;"><b>option:</b> <i>default value</i> - Description of option</li>
+            <li><b>show:</b> <i>false</i> - Enable the plugin and draw as a pie.</li>
+            <li><b>polar:</b> <i>false</i> - Enable convert pie to polar bar chart.</li>
+        </ul>
+
+	</div>
+
+	<div id="footer">
+	</div>
+
+</body>
+</html>
