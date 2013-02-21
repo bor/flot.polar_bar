@@ -4,8 +4,8 @@
         var maxValue = null,
             processed = false;
 
-		plot.hooks.processOptions.push(function(plot, options) {
-			if (options.series.pie.show && options.series.pie.polar) {
+        plot.hooks.processOptions.push(function(plot, options) {
+            if (options.series.pie.show && options.series.pie.polar) {
 
                 // simple check if required pie plugin loaded
                 // TODO grep $.plot.plugins for sure
@@ -15,20 +15,20 @@
             }
         });
 
-		plot.hooks.processDatapoints.push(function(plot, series, data, datapoints) {
-			var options = plot.getOptions();
-			if (options.series.pie.show && options.series.pie.polar) {
-				processDatapoints(plot, series, data, datapoints);
-			}
-		});
+        plot.hooks.processDatapoints.push(function(plot, series, data, datapoints) {
+            var options = plot.getOptions();
+            if (options.series.pie.show && options.series.pie.polar) {
+                processDatapoints(plot, series, data, datapoints);
+            }
+        });
 
-		function processDatapoints(plot, series, datapoints) {
-			if (!processed)	{
-				processed = true;
-				options = plot.getOptions();
-				plot.setData(processData(plot.getData()));
-			}
-		}
+        function processDatapoints(plot, series, datapoints) {
+            if (!processed) {
+                processed = true;
+                options = plot.getOptions();
+                plot.setData(processData(plot.getData()));
+            }
+        }
 
         function processData(slices) {
 
