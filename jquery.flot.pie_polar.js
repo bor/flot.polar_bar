@@ -35,7 +35,7 @@
             // calculate maximum radius
             var maxRadius =  Math.min(plot.getPlaceholder().width(), plot.getPlaceholder().height() / options.series.pie.tilt) / 2;
             // TODO : get maxRadius from pie plugin to avoid issue with labels
-            if (options.series.pie.label.show) maxRadius *= 0.75;    // dirty fix
+            if (options.series.pie.label.show && !options.series.pie.innerRadius) maxRadius *= 0.75;    // dirty fix
 
             var i;
 
