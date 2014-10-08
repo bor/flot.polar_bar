@@ -63,7 +63,8 @@
 	<!--[if lte IE 8]><script type="text/javascript" src="http://www.flotcharts.org/flot/excanvas.min.js"></script><![endif]-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.js"></script>
-	<script type="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.pie.js"></script>
+    <!-- script type="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.pie.js"></script> -->
+	<script type="text/javascript" src="https://raw.githubusercontent.com/bor/flot/pie_with_given_radius/jquery.flot.pie.js"></script>
 	<script type="text/javascript" src="../jquery.flot.pie_polar.js"></script>
 	<script type="text/javascript">
 
@@ -114,14 +115,11 @@
                         show: true,
                         polar: true,
                         label: { show: true }
-					}
+                    }
                 },
-                legend: {
-					show: false
-                }
-			});
-
-		});
+                legend: { show: false }
+            });
+        });
 
 		$("#example-3").click(function() {
 
@@ -138,12 +136,9 @@
                         label: { show: false }
 					}
 				},
-                legend: {
-					show: false
-                }
-			});
-
-		});
+                legend: { show: false }
+            });
+        });
 
 		$('#example-8').click(function() {
 
@@ -181,18 +176,17 @@
 					}
 				}
 			});
-
 		});
 
 
-		$('#example-1').click();
+        $('#example-1').click();
 
         var plugins_arr = jQuery.map( $.plot.plugins, function(el, i) {
             return el.name + ' ' + el.version;
         });
         var plugins_str = plugins_arr.join(', ');
-		$('#footer').prepend('jQuery ' + $.fn.jquery + ', flot ' + $.plot.version + ', ' + plugins_str);
-	});
+        $('#footer').prepend('jQuery ' + $.fn.jquery + ', flot ' + $.plot.version + ', ' + plugins_str);
+    });
 
 	</script>
 </head>
